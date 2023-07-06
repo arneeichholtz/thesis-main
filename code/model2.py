@@ -1,8 +1,8 @@
 import torch
 
-from SRNN_layers_AE.spike_dense import * #spike_dense,readout_integrator
-from SRNN_layers_AE.spike_neuron import * #output_Neuron
-from SRNN_layers_AE.spike_rnn import * # spike_rnn
+from SRNN_layers.spike_dense import * #spike_dense,readout_integrator
+from SRNN_layers.spike_neuron import * #output_Neuron
+from SRNN_layers.spike_rnn import * # spike_rnn
 
 class RNN_s(nn.Module):
     def __init__(self, criterion, device, input_dim=8, output_dim=2, delay=0):

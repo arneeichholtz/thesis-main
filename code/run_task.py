@@ -1,4 +1,7 @@
-from dataset_AE import LRADataset
+# Example usage:
+# python3 run_task.py --ds_size 10 --batch_size 256 --epochs 50 --scheduler plateau
+
+from dataset import LRADataset
 from torch.utils.data import DataLoader
 from torch.optim.lr_scheduler import StepLR, ReduceLROnPlateau
 import torch
@@ -10,9 +13,9 @@ import pandas as pd
 from tqdm import tqdm
 import argparse
 
-from SRNN_layers_AE.spike_dense import * #spike_dense,readout_integrator
-from SRNN_layers_AE.spike_neuron import * #output_Neuron
-from SRNN_layers_AE.spike_rnn import * # spike_rnn
+from SRNN_layers.spike_dense import * #spike_dense,readout_integrator
+from SRNN_layers.spike_neuron import * #output_Neuron
+from SRNN_layers.spike_rnn import * # spike_rnn
 from model import RNN_s
 
 def print_sums():
@@ -168,8 +171,8 @@ if __name__ == "__main__":
     else:
         scheduler = StepLR(optimizer, step_size=step, gamma=fact)
     
-    train_loader = DataLoader(LRADataset(f"../datasets_AE/text_bin8_2048_{ds_size}.train.pickle", False), batch_size=batch_size, drop_last = False)
-    test_loader = DataLoader(LRADataset(f"../datasets_AE/text_bin8_2048_{ds_size}.test.pickle", False), batch_size=batch_size, drop_last = False)
+    train_loader = DataLoader(LRADataset(f"../datasets/text_bin8_2048_{ds_size}.train.pickle", False), batch_size=batch_size, drop_last = False)
+    test_loader = DataLoader(LRADataset(f"../datasets/text_bin8_2048_{ds_size}.test.pickle", False), batch_size=batch_size, drop_last = False)
     valid_loader = test_loader
     
     summary = {"t_epoch": [], "epoch": [], "predictions": [], "train_loss": [], "train_acc": [], "valid_acc": []}
